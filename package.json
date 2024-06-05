@@ -9,7 +9,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "build": "prisma generate && npm run build",
+    "build": "npx prisma generate && npm run build",
     "postinstall": "prisma generate",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
