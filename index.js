@@ -6,9 +6,7 @@ const prisma = new PrismaClient()
 
 const app = express()
 app.use(express.json())
-app.use(cors({
-    origin: '*'
-}));
+app.use(cors())
 
 
 app.post('/usuarios', async (req, res) => {
@@ -17,8 +15,7 @@ app.post('/usuarios', async (req, res) => {
 		data: { 
 			email: req.body.email,
 			name: req.body.name,
-			age: req.body.age,
-            evolution: req.body.evolution
+			age: req.body.age
 		}
 	})
 	
@@ -34,8 +31,7 @@ app.put('/usuarios/:id', async (req, res) => {
 		data: { 
 			email: req.body.email,
 			name: req.body.name,
-			age: req.body.age,
-            evolution: req.body.evolution
+			age: req.body.age
 		}
 	})
 	
@@ -71,11 +67,7 @@ app.get('/usuarios', async (req, res) => {
             return res.status(400).json({ message: "Age deve ser um número válido" })
         }
     }
-
-    if(req.query.evolution) {
-        filters.evolution = req.query.evolution
-    }
-
+    
     const users = await prisma.user.findMany({
         where: filters
     })
