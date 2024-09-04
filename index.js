@@ -8,7 +8,9 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://cadastro-usuarios-six.vercel.app",
+    origin: 'https://cadastro-usuarios-six.vercel.app', // Altere para o domínio correto
+    methods: 'GET,POST,PUT,DELETE',
+    allowedHeaders: 'Content-Type,Authorization'
   })
 );
 
