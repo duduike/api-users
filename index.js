@@ -15,7 +15,8 @@ app.post('/usuarios', async (req, res) => {
 		data: { 
 			email: req.body.email,
 			name: req.body.name,
-			age: req.body.age
+			age: req.body.age,
+            evolucao: req.body.evolucao
 		}
 	})
 	
@@ -31,7 +32,8 @@ app.put('/usuarios/:id', async (req, res) => {
 		data: { 
 			email: req.body.email,
 			name: req.body.name,
-			age: req.body.age
+			age: req.body.age,
+            evolucao: req.body.evolucao
 		}
 	})
 	
@@ -66,6 +68,10 @@ app.get('/usuarios', async (req, res) => {
         } else {
             return res.status(400).json({ message: "Age deve ser um número válido" })
         }
+    }
+
+    if(req.body.evolucao) {
+        filters.evolucao = req.body.evolucao
     }
     
     const users = await prisma.user.findMany({
